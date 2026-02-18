@@ -22,7 +22,7 @@ const DiscoveriesSection = () => (
         </p>
 
         <h2 className="font-display font-bold text-3xl md:text-5xl leading-tight mt-3 text-[#092B00]">
-          What You&apos;ll Discover in{" "}
+         Everything You'll Discover in{" "}
           <span className="text-[#660090]">75 Minutes</span>
         </h2>
       </div>

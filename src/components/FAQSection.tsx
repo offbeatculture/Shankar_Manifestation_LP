@@ -30,10 +30,6 @@ const faqs = [
     q: "Do I need any prior experience?",
     a: "No. Everything is taught step-by-step in a beginner-friendly way.",
   },
-  {
-    q: "How soon will I get access?",
-    a: "Instantly after payment. You’ll be redirected to access the content right away.",
-  },
    {
     q: "Is it Live?",
     a: "- This Masterclass was originally recorded during a live session and is now available as a limited-time broadcast.- You’ll experience the full energy of the original session — just like those who attended it live.",

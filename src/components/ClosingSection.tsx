@@ -14,19 +14,15 @@ const ClosingSection = () => (
 
       {/* Heading */}
       <h2 className="font-display font-bold text-3xl md:text-5xl leading-tight mt-4">
-        You Were Not Born to{" "}
+       Take One Abundance Action{" "}
         <span className="text-[#FFF0BA]">
-          Live Without Abundance
+          Today
         </span>
       </h2>
 
       {/* Description */}
       <p className="text-white/80 text-base md:text-lg leading-relaxed mt-6 mb-10 max-w-2xl mx-auto">
-        You don’t need more hustle. You don’t need more luck.
-        <br />
-        You need to reprogram the beliefs that are keeping abundance away.
-        <br /><br />
-        Today — take one step. One decision. One abundance action.
+        365 days from now, you'll have taken 365 abundance actions. Your life will be unrecognizable — in the best possible way.
       </p>
 
       {/* CTA */}

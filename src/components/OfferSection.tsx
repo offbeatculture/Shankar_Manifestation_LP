@@ -3,12 +3,14 @@ import { CheckCircle2, Sparkles } from "lucide-react";
 
 const includes = [
   "75+ minute Abundance Attraction Masterclass",
-  "Guided Ho'oponopono Forgiveness Meditation",
-  "Daily Gratitude Ritual & Arigato Technique",
-  "Master Abundance Mantra & Affirmations",
-  "The 'What If' Reprogramming Technique",
-  "The 9 Universal Laws of Abundance",
-  "Lifetime access — watch anytime, anywhere",
+  "The complete F.G.A. Formula (Forgiveness, Gratitude, Affirmations",
+  "Guided forgiveness meditation (Ho'oponopono)",
+  "Guided abundance attraction meditation",
+  "The Master Abundance Mantra",
+  "9 Laws of Abundance deep-dive",
+  "5 daily rituals & practices you can start immediately",
+  "Afformations & 'What If Up' technique",
+  "Arigato Technique & Abundance Dance"
 ];
 
 const OfferSection = () => (
@@ -21,8 +23,8 @@ const OfferSection = () => (
 
       {/* Heading */}
       <h2 className="font-display font-bold text-3xl md:text-5xl mt-3 text-[#092B00] leading-tight">
-        Get Everything for Just{" "}
-        <span className="text-[#660090]">₹99</span>
+       Transform Every Dimension of Your Life
+for Less Than a <span className="text-[#660090]">Coffee</span>
       </h2>
 
       {/* Price Row */}

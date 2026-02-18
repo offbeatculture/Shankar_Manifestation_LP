@@ -3,19 +3,19 @@ const steps = [
     letter: "F",
     title: "Forgiveness",
     description:
-      "Release deep-seated resentment and subconscious blocks that silently repel abundance from every area of your life.",
+      "Release the handbrake. Let go of negative stories about money, health, love, and self-worth using the powerful Ho'oponopono technique. Like Diwali — first clean the room, then decorate.",
   },
   {
     letter: "G",
     title: "Gratitude",
     description:
-      "Activate a daily abundance-alignment practice that rewires your brain to notice and attract more of what you want.",
+      "What you appreciate, appreciates. Learn the daily morning abundance gratitude practice and the Japanese 'Arigato' technique to keep abundance flowing into your life.",
   },
   {
     letter: "A",
     title: "Affirmations",
     description:
-      "Reprogram your internal language so your thoughts, words, and beliefs become a magnet for health, wealth, and love.",
+      "eprogram your subconscious with the Master Abundance Mantra, Afformations, and the 'What If Up' technique. Right words create right thinking, right actions, right results.",
   },
 ];
 
