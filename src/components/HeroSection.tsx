@@ -26,7 +26,7 @@ const HeroSection = () => (
           </div>
 
           {/* MOBILE ONLY: Registration form right after CTA */}
-          <div className="mt-8 lg:hidden">
+          <div className="mt-8 lg:hidden" id="registration-form-mobile">
             <RegistrationCard
               priceLabel="Join The Workshop (Rs.99 Only)"
               onSubmit={(data) => {
@@ -36,9 +36,9 @@ const HeroSection = () => (
           </div>
 
           {/* Trust line */}
-          <p className="text-[#2f3e4e] text-xs md:text-sm mt-4">
+          {/* <p className="text-[#2f3e4e] text-xs md:text-sm mt-4">
             One-time payment · 3 hours · 
-          </p>
+          </p> */}
 
           {/* Mini bullets */}
          {/* Stats Section */}
@@ -95,9 +95,9 @@ const HeroSection = () => (
         </div>
 
         {/* RIGHT: Desktop form */}
-        <div className="hidden lg:flex justify-end">
+        <div className="hidden lg:flex justify-end" id="registration-form-desktop">
           <div className="w-full max-w-md">
-            <RegistrationCard
+            <RegistrationCard 
               priceLabel="Join The Workshop (Rs.99 Only)"
               onSubmit={(data) => {
                 console.log("Registration:", data);

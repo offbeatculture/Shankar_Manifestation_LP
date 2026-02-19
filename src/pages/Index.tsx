@@ -6,8 +6,12 @@ import TestimonialsSection from "@/components/TestimonialsSection";
 import OfferSection from "@/components/OfferSection";
 import FAQSection from "@/components/FAQSection";
 import ClosingSection from "@/components/ClosingSection";
+import { useFacebookPixel } from "@/hooks/useFacebookPixel";
 
-const Index = () => (
+const Index = () => {
+
+useFacebookPixel();
+   return (
   <main className="min-h-screen bg-background">
     <HeroSection />
     <div className="w-16 h-px bg-gold/30 mx-auto" />
@@ -26,5 +30,5 @@ const Index = () => (
     <ClosingSection />
   </main>
 );
-
+};
 export default Index;

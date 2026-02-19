@@ -14,8 +14,6 @@ type Profession =
   | "Working Professional"
   | "Business Owner"
   | "Freelancer"
-  | "Homemaker"
-  | "Coach / Trainer"
   | "Other";
 
 const professions: Profession[] = [
@@ -23,15 +21,13 @@ const professions: Profession[] = [
   "Working Professional",
   "Business Owner",
   "Freelancer",
-  "Homemaker",
-  "Coach / Trainer",
   "Other",
 ];
 
 type FormState = {
   name: string;
   email: string;
-  phone: string;
+  phone: string; // whatsapp number
   profession: Profession | "";
 };
 
@@ -44,11 +40,55 @@ type RegistrationCardProps = {
   initialSeconds?: number;
 };
 
+type UtmState = Partial<Record<
+  | "utm_source"
+  | "utm_medium"
+  | "utm_campaign"
+  | "utm_term"
+  | "utm_content"
+  | "gclid"
+  | "fbclid",
+  string
+>>;
+
+const WEBHOOK_URL =
+  "https://offbeatn8n.coachswastik.com/webhook-test/leads-abundance";
+
+const RAZORPAY_URL = "https://pages.razorpay.com/am-fb1";
+
+const UTM_STORAGE_KEY = "abundance_utms_v1";
+
 const formatTime = (seconds: number) => {
   const m = String(Math.floor(seconds / 60)).padStart(2, "0");
   const s = String(seconds % 60).padStart(2, "0");
   return `${m}:${s}`;
 };
+
+const pickTrackingParams = (sp: URLSearchParams): UtmState => {
+  const keys: (keyof UtmState)[] = [
+    "utm_source",
+    "utm_medium",
+    "utm_campaign",
+    "utm_term",
+    "utm_content",
+    "gclid",
+    "fbclid",
+  ];
+
+  const out: UtmState = {};
+  keys.forEach((k) => {
+    const v = sp.get(k);
+    if (v) out[k] = v;
+  });
+  return out;
+};
+
+const mergeUtms = (a: UtmState, b: UtmState): UtmState => ({
+  ...a,
+  ...Object.fromEntries(
+    Object.entries(b).filter(([, v]) => typeof v === "string" && v.length > 0)
+  ),
+});
 
 export default function RegistrationCard({
   onSubmit,
@@ -56,6 +96,9 @@ export default function RegistrationCard({
   initialSeconds = 10 * 60,
 }: RegistrationCardProps) {
   const [timeLeft, setTimeLeft] = useState<number>(initialSeconds);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const [utms, setUtms] = useState<UtmState>({});
 
   const [form, setForm] = useState<FormState>({
     name: "",
@@ -70,6 +113,31 @@ export default function RegistrationCard({
     phone: false,
     profession: false,
   });
+
+  // capture utms once on mount
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const urlUtms = pickTrackingParams(new URLSearchParams(window.location.search));
+
+    let stored: UtmState = {};
+    try {
+      stored = JSON.parse(localStorage.getItem(UTM_STORAGE_KEY) || "{}") as UtmState;
+    } catch {
+      stored = {};
+    }
+
+    const merged = mergeUtms(stored, urlUtms);
+
+    // persist for refresh/navigation
+    try {
+      localStorage.setItem(UTM_STORAGE_KEY, JSON.stringify(merged));
+    } catch {
+      // ignore storage errors
+    }
+
+    setUtms(merged);
+  }, []);
 
   useEffect(() => {
     if (timeLeft <= 0) return;
@@ -112,7 +180,40 @@ export default function RegistrationCard({
     setTouched((p) => ({ ...p, [key]: true }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const buildRazorpayRedirectUrl = (data: FormState, tracking: UtmState) => {
+    const params = new URLSearchParams({
+      name: data.name,
+      email: data.email,
+      whatsapp_number: data.phone,
+      profession: data.profession || "",
+      // add utms (only those present)
+      ...(tracking as Record<string, string>),
+    });
+
+    return `${RAZORPAY_URL}?${params.toString()}`;
+  };
+
+  const postToWebhook = async (data: FormState, tracking: UtmState) => {
+    const payload = {
+      name: data.name,
+      email: data.email,
+      whatsapp_number: data.phone,
+      profession: data.profession,
+      source: "lp-abundance",
+      created_at: new Date().toISOString(),
+      ...tracking, // utm_source, utm_medium, etc.
+    };
+
+    await fetch(WEBHOOK_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+      // allows sending even during navigation in many browsers
+      keepalive: true as any,
+    });
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     setTouched({
@@ -122,14 +223,29 @@ export default function RegistrationCard({
       profession: true,
     });
 
-    if (!isValid) return;
+    if (!isValid || isSubmitting) return;
 
-    onSubmit?.(form);
+    setIsSubmitting(true);
+
+    try {
+      onSubmit?.(form);
+
+      // Try webhook first; don't block payment if it fails due to CORS etc.
+      try {
+        await postToWebhook(form, utms);
+      } catch (err) {
+        console.warn("Webhook failed, continuing to Razorpay redirect.", err);
+      }
+
+      // Redirect to Razorpay with form + utms
+      window.location.assign(buildRazorpayRedirectUrl(form, utms));
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
     <div className="w-full max-w-md mx-auto rounded-2xl bg-white shadow-xl border border-black/5 overflow-hidden">
-      {/* Header (center aligned) */}
       <div className="px-5 sm:px-6 pt-7 pb-4 text-center">
         <h2 className="text-xl md:text-2xl font-semibold text-slate-900">
           Join The Workshop
@@ -148,11 +264,7 @@ export default function RegistrationCard({
         </p>
       </div>
 
-      {/* Form (force left alignment on mobile) */}
-      <form
-        onSubmit={handleSubmit}
-        className="px-5 sm:px-6 pb-6 space-y-4 text-left"
-      >
+      <form onSubmit={handleSubmit} className="px-5 sm:px-6 pb-6 space-y-4 text-left">
         {/* Name */}
         <div className="w-full">
           <label className="block text-sm font-medium text-slate-800 mb-2">
@@ -198,7 +310,7 @@ export default function RegistrationCard({
         {/* Phone */}
         <div className="w-full">
           <label className="block text-sm font-medium text-slate-800 mb-2">
-            Phone Number
+            WhatsApp Number
           </label>
           <div className="relative w-full">
             <Phone className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
@@ -246,10 +358,6 @@ export default function RegistrationCard({
             <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 pointer-events-none" />
           </div>
 
-          <p className="mt-1 text-xs text-slate-500">
-            (We’ll pass a Razorpay-safe value for checkout.)
-          </p>
-
           {touched.profession && errors.profession && (
             <p className="mt-1 text-xs text-red-600">{errors.profession}</p>
           )}
@@ -258,7 +366,7 @@ export default function RegistrationCard({
         {/* CTA */}
         <button
           type="submit"
-          disabled={!isValid}
+          disabled={!isValid || isSubmitting}
           className="
             mt-2 w-full rounded-xl py-4 font-semibold text-white
             bg-black shadow-lg shadow-black/20
@@ -266,10 +374,9 @@ export default function RegistrationCard({
             disabled:opacity-50 disabled:cursor-not-allowed disabled:active:scale-100
           "
         >
-          {priceLabel}
+          {isSubmitting ? "Redirecting..." : priceLabel}
         </button>
 
-        {/* Footer (center, but form stays left) */}
         <div className="pt-3 text-center text-xs text-slate-500 flex justify-center items-center gap-2">
           <Lock className="w-4 h-4" />
           <span>Your information is safe &amp; never shared</span>
