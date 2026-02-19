@@ -47,7 +47,7 @@ const beliefs = [
 ];
 
 const ProblemSection = () => (
-  <section className="w-full bg-[#F4EBDD] py-8 px-6 text-center">
+  <section className="w-full bg-white py-8 px-6 text-center">
     <div className="max-w-6xl mx-auto">
       {/* Top Label */}
       <p className="text-[#2f3e4e] text-xs tracking-[0.4em] uppercase mb-6 font-semibold">
@@ -55,9 +55,9 @@ const ProblemSection = () => (
       </p>
 
       {/* Heading */}
-      <h2 className="font-display font-bold text-3xl md:text-5xl lg:text-6xl leading-tight mb-6 text-[#8a6a4a]">
+      <h2 className="font-display font-bold text-3xl md:text-5xl lg:text-6xl leading-tight mb-6 text-[#111111]">
         These Toxic Beliefs Are Silently <br />
-        <span className="text-[#2f3e4e]">
+        <span className="text-[#B8860B]">
           Destroying Your Life
         </span>
       </h2>

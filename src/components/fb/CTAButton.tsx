@@ -10,7 +10,7 @@ const CTAButton = ({
     className={`
       relative overflow-hidden
       inline-block
-      bg-[#C89B3C]
+      bg-gold-gradient
       font-body font-semibold
       text-primary-foreground
       px-8 py-4

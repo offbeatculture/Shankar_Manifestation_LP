@@ -14,7 +14,7 @@ const includes = [
 ];
 
 const OfferSection = () => (
-  <section id="get-access" className="w-full bg-[#f4ebdd] pt-8 pb-12 px-6">
+  <section id="get-access" className="w-full bg-white pt-8 pb-12 px-6">
     <div className="max-w-4xl mx-auto text-center">
       {/* Label */}
 
@@ -32,8 +32,8 @@ for Less Than a <span className="text-[#8a6a4a]">Coffee</span>
         <span className="text-[#2f3e4e] font-bold text-3xl md:text-4xl">
           ₹99
         </span>
-        <span className="inline-flex items-center gap-2 rounded-full bg-[#2f3e4e] px-4 py-2 text-[#fff] text-sm font-semibold">
-          <Sparkles className="w-4 h-4 text-[#fff]" />
+        <span className="inline-flex items-center gap-2 rounded-full bg-[#2f3e4e] px-4 py-2 text-[#2f3e4e] text-sm font-semibold">
+          <Sparkles className="w-4 h-4 text-[#8a6a4a]" />
           Limited Offer
         </span>
       </div>

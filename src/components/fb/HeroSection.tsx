@@ -2,7 +2,7 @@ import CTAButton from "./CTAButton";
 import RegistrationCard from "./RegistrationCard";
 
 const HeroSection = () => (
-  <section className="w-full bg-[#e8d8c3] text-white">
+  <section className="w-full bg-[#2f3e4e] text-white">
     <div className="section-padding max-w-6xl mx-auto">
       {/* Layout: mobile = stacked, desktop = 2 columns */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-start">
@@ -10,13 +10,13 @@ const HeroSection = () => (
         <div className="text-center lg:text-left">
          
           {/* Heading */}
-          <h1 className="font-display text-[#2f3e4e] font-bold text-3xl md:text-9xl lg:text-6xl leading-tight mb-6">
+          <h1 className="font-display font-bold text-3xl md:text-9xl lg:text-6xl leading-tight mb-6">
             Stop Chasing Abundance.{" "}
-            <br></br><span className="text-[#2a2e26]">Let It Flow To You.</span>
+            <br></br><span className="text-[#2f3e4e]">Let It Flow To You.</span>
           </h1>
 
           {/* Subheading */}
-          <p className="text-[#2f3e4e] text-base md:text-lg leading-relaxed mb-8 max-w-2xl mx-auto lg:mx-0">
+          <p className="text-white/80 text-base md:text-lg leading-relaxed mb-8 max-w-2xl mx-auto lg:mx-0">
             The proven 3-step formula to reprogram your mind for health, wealth , & happiness — so abundance doesn't just arrive, it stays.
           </p>
 
@@ -36,7 +36,7 @@ const HeroSection = () => (
           </div>
 
           {/* Trust line */}
-          <p className="text-[#2f3e4e] text-xs md:text-sm mt-4">
+          <p className="text-white/60 text-xs md:text-sm mt-4">
             One-time payment · 3 hours · 
           </p>
 
@@ -48,7 +48,7 @@ const HeroSection = () => (
     <div className="text-xl md:text-4xl font-bold text-[#2f3e4e]">
       120
     </div>
-    <div className="text-black/80 text-sm uppercase tracking-wide mt-1">
+    <div className="text-white/80 text-sm uppercase tracking-wide mt-1">
       Minutes
     </div>
   </div>
@@ -58,7 +58,7 @@ const HeroSection = () => (
     <div className="text-xl md:text-4xl font-bold text-[#2f3e4e]">
       12+
     </div>
-    <div className="text-black/80 text-sm uppercase tracking-wide mt-1">
+    <div className="text-white/80 text-sm uppercase tracking-wide mt-1">
       Techniques
     </div>
   </div>
@@ -68,7 +68,7 @@ const HeroSection = () => (
     <div className="text-xl md:text-4xl font-bold text-[#2f3e4e]">
       3
     </div>
-    <div className="text-black/80 text-sm uppercase tracking-wide mt-1">
+    <div className="text-white/80 text-sm uppercase tracking-wide mt-1">
       Life Dimensions
     </div>
   </div>
@@ -78,7 +78,7 @@ const HeroSection = () => (
     <div className="text-xl md:text-4xl font-bold text-[#2f3e4e]">
       ₹99
     </div>
-    <div className="text-black/80 text-sm uppercase tracking-wide mt-1">
+    <div className="text-white/80 text-sm uppercase tracking-wide mt-1">
       Only
     </div>
   </div>

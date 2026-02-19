@@ -2,9 +2,9 @@ import CTAButton from "./CTAButton";
 import { Sparkles } from "lucide-react";
 
 const ClosingSection = () => (
-  <section className="w-full bg-[#e8d8c3] pt-12 pb-16 px-6 text-center text-white relative overflow-hidden">
+  <section className="w-full bg-[#2f3e4e] pt-12 pb-16 px-6 text-center text-white relative overflow-hidden">
     {/* Subtle Purple Glow Accent */}
-    <div className="absolute -top-24 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-[#e8d8c3]/20 blur-3xl rounded-full pointer-events-none" />
+    <div className="absolute -top-24 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-[#8a6a4a]/20 blur-3xl rounded-full pointer-events-none" />
 
     <div className="max-w-3xl mx-auto relative z-10">
       {/* Label */}
@@ -13,7 +13,7 @@ const ClosingSection = () => (
       </p>
 
       {/* Heading */}
-      <h2 className="font-display font-bold text-3xl md:text-5xl leading-tight mt-4 text-[#8a6a4a]">
+      <h2 className="font-display font-bold text-3xl md:text-5xl leading-tight mt-4">
        Take One Abundance Action{" "}
         <span className="text-[#2f3e4e]">
           Today
@@ -21,7 +21,7 @@ const ClosingSection = () => (
       </h2>
 
       {/* Description */}
-      <p className="text-[#2e2a26] text-base md:text-lg leading-relaxed mt-6 mb-10 max-w-2xl mx-auto">
+      <p className="text-white/80 text-base md:text-lg leading-relaxed mt-6 mb-10 max-w-2xl mx-auto">
         365 days from now, you'll have taken 365 abundance actions. Your life will be unrecognizable — in the best possible way.
       </p>
 

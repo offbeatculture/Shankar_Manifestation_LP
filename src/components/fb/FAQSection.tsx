@@ -32,7 +32,7 @@ const FAQSection = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section className="w-full bg-[#f4ebdd] pt-8 pb-12 px-6">
+    <section className="w-full bg-white pt-8 pb-12 px-6">
       <div className="max-w-4xl mx-auto">
         {/* Header */}
         <div className="text-center mb-10">
@@ -59,7 +59,7 @@ const FAQSection = () => {
                 className={`
                   rounded-2xl border overflow-hidden bg-white
                   transition-all duration-300
-                  ${isOpen ? "border-[#fff]/40" : "border-[#2f3e4e]/15"}
+                  ${isOpen ? "border-[#8a6a4a]/40" : "border-[#2f3e4e]/15"}
                 `}
               >
                 <button
@@ -80,7 +80,7 @@ const FAQSection = () => {
                   >
                     <ChevronDown
                       className={`
-                        w-5 h-5 text-[#fff]
+                        w-5 h-5 text-[#8a6a4a]
                         transition-transform duration-300
                         ${isOpen ? "rotate-180" : ""}
                       `}

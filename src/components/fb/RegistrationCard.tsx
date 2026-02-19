@@ -135,7 +135,7 @@ export default function RegistrationCard({
           Join The Workshop
         </h2>
 
-        <div className="mt-3 inline-flex items-center gap-2 rounded-full bg-[#8A6A4A] px-4 py-2 text-sm font-medium text-white">
+        <div className="mt-3 inline-flex items-center gap-2 rounded-full bg-[#2f3e4e]/60 px-4 py-2 text-sm font-medium text-slate-900">
           <Clock className="w-4 h-4" />
           <span className="opacity-80">Offer expires in</span>
           <span className="font-semibold tabular-nums">

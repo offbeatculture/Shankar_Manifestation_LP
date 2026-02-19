@@ -20,7 +20,7 @@ const steps = [
 ];
 
 const FGASection = () => (
-  <section className="w-full pt-8 pb-16 px-6 bg-[#e8d8c3] text-white">
+  <section className="w-full pt-8 pb-16 px-6 bg-[#2f3e4e] text-white">
     <div className="max-w-6xl mx-auto">
       {/* Heading */}
       <div className="text-center mb-12">
@@ -28,7 +28,7 @@ const FGASection = () => (
           The Formula
         </p>
 
-        <h2 className="font-display font-bold text-3xl md:text-5xl leading-tight mt-4 text-[#8a6a4a]">
+        <h2 className="font-display font-bold text-3xl md:text-5xl leading-tight mt-4">
           The{" "}
           <span className="text-[#2f3e4e]">
             F.G.A.
@@ -50,7 +50,7 @@ const FGASection = () => (
             className="
               group relative rounded-2xl p-8
               bg-white
-              text-[#2e2a26]
+              text-[#2f3e4e]
               transition-all duration-300
               hover:-translate-y-2
               hover:shadow-xl
@@ -61,10 +61,10 @@ const FGASection = () => (
               <div
                 className="
                   w-16 h-16 rounded-full
-                  bg-[#f4ebdd]
+                  bg-[#8a6a4a]
                   flex items-center justify-center
                   transition duration-300
-                  group-hover:bg-[#f4ebdd]
+                  group-hover:bg-[#2f3e4e]
                 "
               >
                 <span className="font-display font-bold text-2xl text-[#2f3e4e]">

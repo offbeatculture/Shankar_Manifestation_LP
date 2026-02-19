@@ -13,7 +13,7 @@ const outcomes = [
 ];
 
 const DiscoveriesSection = () => (
-  <section className="w-full bg-[#f4ebdd] pt-8 pb-12 px-6">
+  <section className="w-full bg-white pt-8 pb-12 px-6">
     <div className="max-w-6xl mx-auto">
       {/* Heading */}
       <div className="text-center mb-8">
@@ -42,7 +42,7 @@ const DiscoveriesSection = () => (
               hover:shadow-md
             "
           >
-            <CheckCircle2 className="w-5 h-5 text-[#2e2a26] shrink-0 mt-1" />
+            <CheckCircle2 className="w-5 h-5 text-[#8a6a4a] shrink-0 mt-1" />
             <p className="text-[#2f3e4e] text-sm leading-relaxed font-medium">
               {o}
             </p>
