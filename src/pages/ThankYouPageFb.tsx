@@ -36,7 +36,7 @@ const ThankYouPageFb = () => {
 
         {/* WhatsApp CTA */}
         <a
-          href="connect.manifestwithshankar.com/wap-fb"
+          href="https://connect.manifestwithshankar.com/wap-fb"
           target="_blank"
           rel="noopener noreferrer"
           className="

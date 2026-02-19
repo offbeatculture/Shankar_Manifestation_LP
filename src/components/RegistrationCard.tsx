@@ -52,7 +52,7 @@ type UtmState = Partial<Record<
 >>;
 
 const WEBHOOK_URL =
-  "https://offbeatn8n.coachswastik.com/webhook-test/leads-abundance";
+  "https://offbeatn8n.coachswastik.com/webhook/leads-abundance";
 
 const RAZORPAY_URL = "https://pages.razorpay.com/am-fb1";
 

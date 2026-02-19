@@ -77,9 +77,15 @@ const TestimonialsSection = () => (
 
       {/* CTA */}
       <div className="mt-12">
-        <CTAButton className="shadow-[0_8px_25px_rgba(0,0,0,0.15)] hover:shadow-[0_12px_35px_rgba(0,0,0,0.25)]">
-          Get Instant Access for ₹99
-        </CTAButton>
+          <div className="flex justify-center ">
+  <CTAButton>
+    <span className="flex items-center gap-2">
+      Register for
+      <span className="line-through opacity-70">₹999</span>
+      <span className="font-bold">₹99</span>
+    </span>
+  </CTAButton>
+</div>
 
         <p className="mt-3 text-sm text-[#2f3e4e]/80">
           Join thousands shifting their inner world.

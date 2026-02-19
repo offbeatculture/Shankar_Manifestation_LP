@@ -52,11 +52,16 @@ const DiscoveriesSection = () => (
 
       {/* CTA Area */}
       <div className="mt-10 text-center">
-        <div className="inline-block">
-          <CTAButton>
-            Get Instant Access for ₹99
-          </CTAButton>
-        </div>
+       <div className="flex justify-center ">
+  <CTAButton>
+    <span className="flex items-center gap-2">
+      Register for
+      <span className="line-through opacity-70">₹999</span>
+      <span className="font-bold">₹99</span>
+    </span>
+  </CTAButton>
+</div>
+
 
         <p className="mt-3 text-sm text-[#2f3e4e]/80">
           One-time payment · 3 hours session

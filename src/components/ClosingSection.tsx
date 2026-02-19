@@ -37,7 +37,7 @@ const ClosingSection = () => (
 
       {/* Trust Line */}
       <p className="text-[#2f3e4e]/80 text-sm mt-6">
-        One-time payment · Start instantly · 3 hours masterclass
+        One-time payment | 3 hours masterclass
       </p>
     </div>
   </section>

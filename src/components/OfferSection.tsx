@@ -27,7 +27,7 @@ for Less Than a <span className="text-[#8a6a4a]">Coffee</span>
       {/* Price Row */}
       <div className="mt-4 flex items-center justify-center gap-3">
         <span className="text-[#2f3e4e]/70 text-lg md:text-xl line-through">
-          ₹2,999
+          ₹999
         </span>
         <span className="text-[#2f3e4e] font-bold text-3xl md:text-4xl">
           ₹99
@@ -76,11 +76,15 @@ for Less Than a <span className="text-[#8a6a4a]">Coffee</span>
       </div>
 
       {/* CTA */}
-      <div className="mt-8 flex justify-center">
-        <CTAButton className="px-10">
-          Yes! I Want Abundance
-        </CTAButton>
-      </div>
+       <div className="flex justify-center mt-6 ">
+  <CTAButton>
+    <span className="flex items-center gap-2">
+      Register for
+      <span className="line-through opacity-70">₹999</span>
+      <span className="font-bold">₹99</span>
+    </span>
+  </CTAButton>
+</div>
 
       {/* Footer note */}
       <p className="text-[#2f3e4e]/70 text-xs mt-4">

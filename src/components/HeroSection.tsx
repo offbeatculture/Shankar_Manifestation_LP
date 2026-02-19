@@ -22,8 +22,15 @@ const HeroSection = () => (
 
           {/* CTA */}
           <div className="flex justify-center lg:justify-start">
-            <CTAButton>Get Instant Access for ₹99</CTAButton>
-          </div>
+  <CTAButton>
+    <span className="flex items-center gap-2">
+      Register for
+      <span className="line-through opacity-70">₹999</span>
+      <span className="font-bold">₹99</span>
+    </span>
+  </CTAButton>
+</div>
+
 
           {/* MOBILE ONLY: Registration form right after CTA */}
           <div className="mt-8 lg:hidden" id="registration-form-mobile">
