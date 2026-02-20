@@ -79,7 +79,7 @@ for Less Than a <span className="text-[#8a6a4a]">Coffee</span>
        <div className="flex justify-center mt-6 ">
   <CTAButton>
     <span className="flex items-center gap-2">
-      Register Now For Just
+      Register for
       <span className="line-through opacity-70">₹999</span>
       <span className="font-bold">₹99</span>
     </span>

@@ -40,55 +40,74 @@ type RegistrationCardProps = {
   initialSeconds?: number;
 };
 
-type UtmState = Partial<Record<
-  | "utm_source"
-  | "utm_medium"
-  | "utm_campaign"
-  | "utm_term"
-  | "utm_content"
-  | "gclid"
-  | "fbclid",
-  string
->>;
+/** ✅ Use the new URLs (from your top snippet) */
+const RAZORPAY_PAGE_URL =
+  "https://pages.razorpay.com/am-fb1";
+const WEBHOOK_URL = "https://offbeatn8n.coachswastik.com/webhook/leads-abundance";
 
-const WEBHOOK_URL =
-  "https://offbeatn8n.coachswastik.com/webhook/leads-abundance";
+/** ✅ UTMs: match the “above logic” */
+type UtmState = {
+  utm_source: string;
+  utm_campaign: string;
+  utm_medium: string;
+  utm_content: string;
+  fbclid: string;
+};
 
-const RAZORPAY_URL = "https://pages.razorpay.com/am-fb1";
+const UTM_KEY = "lead_utms_goal_hacking";
 
-const UTM_STORAGE_KEY = "abundance_utms_v1";
+/** ✅ Grab UTMs (and persist) */
+function getUTMs(): UtmState {
+  const empty: UtmState = {
+    utm_source: "",
+    utm_campaign: "",
+    utm_medium: "",
+    utm_content: "",
+    fbclid: "",
+  };
+
+  if (typeof window === "undefined") return empty;
+
+  const params = new URLSearchParams(window.location.search);
+  const fromUrl: UtmState = {
+    utm_source: params.get("utm_source") || "",
+    utm_campaign: params.get("utm_campaign") || "",
+    utm_medium: params.get("utm_medium") || "",
+    utm_content: params.get("utm_content") || "",
+    fbclid: params.get("fbclid") || "",
+  };
+
+  const saved = localStorage.getItem(UTM_KEY);
+  const hasAny = Object.values(fromUrl).some(Boolean);
+
+  if (!saved && hasAny) {
+    localStorage.setItem(UTM_KEY, JSON.stringify(fromUrl));
+  }
+
+  try {
+    const stored = saved ? JSON.parse(saved) : {};
+    // URL wins
+    return { ...empty, ...stored, ...fromUrl };
+  } catch {
+    return { ...empty, ...fromUrl };
+  }
+}
+
+/**
+ * Razorpay Payment Pages often prefill dropdown/custom fields ONLY when the value
+ * matches EXACTLY. Keep mapping only if your Razorpay option does NOT include "/".
+ */
+function toRazorpayProfession(value: string) {
+  const v = (value || "").trim();
+  if (v === "Business Owner / Entrepreneur") return "Business Owner Entrepreneur";
+  return v;
+}
 
 const formatTime = (seconds: number) => {
   const m = String(Math.floor(seconds / 60)).padStart(2, "0");
   const s = String(seconds % 60).padStart(2, "0");
   return `${m}:${s}`;
 };
-
-const pickTrackingParams = (sp: URLSearchParams): UtmState => {
-  const keys: (keyof UtmState)[] = [
-    "utm_source",
-    "utm_medium",
-    "utm_campaign",
-    "utm_term",
-    "utm_content",
-    "gclid",
-    "fbclid",
-  ];
-
-  const out: UtmState = {};
-  keys.forEach((k) => {
-    const v = sp.get(k);
-    if (v) out[k] = v;
-  });
-  return out;
-};
-
-const mergeUtms = (a: UtmState, b: UtmState): UtmState => ({
-  ...a,
-  ...Object.fromEntries(
-    Object.entries(b).filter(([, v]) => typeof v === "string" && v.length > 0)
-  ),
-});
 
 export default function RegistrationCard({
   onSubmit,
@@ -97,8 +116,6 @@ export default function RegistrationCard({
 }: RegistrationCardProps) {
   const [timeLeft, setTimeLeft] = useState<number>(initialSeconds);
   const [isSubmitting, setIsSubmitting] = useState(false);
-
-  const [utms, setUtms] = useState<UtmState>({});
 
   const [form, setForm] = useState<FormState>({
     name: "",
@@ -114,29 +131,9 @@ export default function RegistrationCard({
     profession: false,
   });
 
-  // capture utms once on mount
+  /** ✅ Capture UTMs once (so refresh/navigation keeps them) */
   useEffect(() => {
-    if (typeof window === "undefined") return;
-
-    const urlUtms = pickTrackingParams(new URLSearchParams(window.location.search));
-
-    let stored: UtmState = {};
-    try {
-      stored = JSON.parse(localStorage.getItem(UTM_STORAGE_KEY) || "{}") as UtmState;
-    } catch {
-      stored = {};
-    }
-
-    const merged = mergeUtms(stored, urlUtms);
-
-    // persist for refresh/navigation
-    try {
-      localStorage.setItem(UTM_STORAGE_KEY, JSON.stringify(merged));
-    } catch {
-      // ignore storage errors
-    }
-
-    setUtms(merged);
+    getUTMs();
   }, []);
 
   useEffect(() => {
@@ -180,36 +177,44 @@ export default function RegistrationCard({
     setTouched((p) => ({ ...p, [key]: true }));
   };
 
-  const buildRazorpayRedirectUrl = (data: FormState, tracking: UtmState) => {
-    const params = new URLSearchParams({
-      name: data.name,
-      email: data.email,
-      whatsapp_number: data.phone,
-      profession: data.profession || "",
-      // add utms (only those present)
-      ...(tracking as Record<string, string>),
-    });
+  /** ✅ Build Razorpay redirect URL + UTMs (same as your top snippet) */
+  const buildRazorpayRedirectUrl = (data: FormState, utms: UtmState) => {
+    const professionForPay = toRazorpayProfession(data.profession || "");
 
-    return `${RAZORPAY_URL}?${params.toString()}`;
+    const payUrl =
+      `${RAZORPAY_PAGE_URL}` +
+      `?name=${encodeURIComponent(data.name)}` +
+      `&email=${encodeURIComponent(data.email)}` +
+      `&whatsapp_number=${encodeURIComponent(data.phone)}` +
+      `&profession=${encodeURIComponent(professionForPay)}` +
+      `&utm_source=${encodeURIComponent(utms.utm_source)}` +
+      `&utm_campaign=${encodeURIComponent(utms.utm_campaign)}` +
+      `&utm_medium=${encodeURIComponent(utms.utm_medium)}` +
+      `&utm_content=${encodeURIComponent(utms.utm_content)}` +
+      `&fbclid=${encodeURIComponent(utms.fbclid)}`;
+
+    return payUrl;
   };
 
-  const postToWebhook = async (data: FormState, tracking: UtmState) => {
-    const payload = {
-      name: data.name,
-      email: data.email,
-      whatsapp_number: data.phone,
-      profession: data.profession,
-      source: "lp-abundance",
-      created_at: new Date().toISOString(),
-      ...tracking, // utm_source, utm_medium, etc.
-    };
+  /** ✅ Webhook payload (same fields as your top snippet) */
+  const postToWebhook = async (data: FormState, utms: UtmState) => {
+    const professionForPay = toRazorpayProfession(data.profession || "");
 
     await fetch(WEBHOOK_URL, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload),
-      // allows sending even during navigation in many browsers
-      keepalive: true as any,
+      body: JSON.stringify({
+        name: data.name,
+        email: data.email,
+        phone: data.phone,
+        whatsapp_number: data.phone,
+        profession: data.profession, // original label
+        profession_for_pay: professionForPay, // what we pass to Razorpay
+        ...utms, // utm_source, utm_campaign, utm_medium, utm_content, fbclid
+        page_url: typeof window !== "undefined" ? window.location.href : "",
+        ts: new Date().toISOString(),
+      }),
+      keepalive: true,
     });
   };
 
@@ -230,15 +235,17 @@ export default function RegistrationCard({
     try {
       onSubmit?.(form);
 
-      // Try webhook first; don't block payment if it fails due to CORS etc.
+      const utms = getUTMs();
+
+      // 1) Trigger webhook (best effort)
       try {
         await postToWebhook(form, utms);
-      } catch (err) {
-        console.warn("Webhook failed, continuing to Razorpay redirect.", err);
+      } catch {
+        // silent fail
       }
 
-      // Redirect to Razorpay with form + utms
-      window.location.assign(buildRazorpayRedirectUrl(form, utms));
+      // 2) Redirect to Razorpay page with query params + UTMs
+      window.location.href = buildRazorpayRedirectUrl(form, utms);
     } finally {
       setIsSubmitting(false);
     }
@@ -264,7 +271,10 @@ export default function RegistrationCard({
         </p>
       </div>
 
-      <form onSubmit={handleSubmit} className="px-5 sm:px-6 pb-6 space-y-4 text-left">
+      <form
+        onSubmit={handleSubmit}
+        className="px-5 sm:px-6 pb-6 space-y-4 text-left"
+      >
         {/* Name */}
         <div className="w-full">
           <label className="block text-sm font-medium text-slate-800 mb-2">
