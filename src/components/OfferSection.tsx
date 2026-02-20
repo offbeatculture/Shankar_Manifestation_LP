@@ -2,7 +2,7 @@ import CTAButton from "./CTAButton";
 import { CheckCircle2, Sparkles } from "lucide-react";
 
 const includes = [
-  "75+ minute Abundance Attraction Masterclass",
+  "120+ minute Abundance Attraction Masterclass",
   "The complete F.G.A. Formula (Forgiveness, Gratitude, Affirmations",
   "Guided forgiveness meditation (Ho'oponopono)",
   "Guided abundance attraction meditation",
@@ -79,7 +79,7 @@ for Less Than a <span className="text-[#8a6a4a]">Coffee</span>
        <div className="flex justify-center mt-6 ">
   <CTAButton>
     <span className="flex items-center gap-2">
-      Register for
+      Register Now For Just
       <span className="line-through opacity-70">₹999</span>
       <span className="font-bold">₹99</span>
     </span>

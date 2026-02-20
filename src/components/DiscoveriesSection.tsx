@@ -23,7 +23,7 @@ const DiscoveriesSection = () => (
 
         <h2 className="font-display font-bold text-3xl md:text-5xl leading-tight mt-3 text-[#2f3e4e]">
          Everything You'll Discover in{" "}
-          <span className="text-[#8a6a4a]">75 Minutes</span>
+          <span className="text-[#8a6a4a]">120 Minutes</span>
         </h2>
       </div>
 
@@ -55,7 +55,7 @@ const DiscoveriesSection = () => (
        <div className="flex justify-center ">
   <CTAButton>
     <span className="flex items-center gap-2">
-      Register for
+      Register Now For Just 
       <span className="line-through opacity-70">₹999</span>
       <span className="font-bold">₹99</span>
     </span>
@@ -64,7 +64,7 @@ const DiscoveriesSection = () => (
 
 
         <p className="mt-3 text-sm text-[#2f3e4e]/80">
-          One-time payment · 3 hours session
+          One-time payment · 2 hours session
         </p>
       </div>
     </div>

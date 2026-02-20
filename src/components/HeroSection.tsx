@@ -195,7 +195,7 @@ const HeroSection = () => {
             <div className="flex justify-center lg:justify-start">
               <CTAButton>
                 <span className="flex items-center gap-2">
-                  Register for
+                  Register Now For Just
                   <span className="line-through opacity-70">₹999</span>
                   <span className="font-bold">₹99</span>
                 </span>

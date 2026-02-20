@@ -22,10 +22,10 @@ const faqs = [
     q: "Do I need any prior experience?",
     a: "No. Everything is taught step-by-step in a beginner-friendly way.",
   },
-   {
-    q: "Is it Live?",
-    a: "- This Masterclass was originally recorded during a live session and is now available as a limited-time broadcast.- You’ll experience the full energy of the original session — just like those who attended it live.",
-  },
+  //  {
+  //   q: "Is it Live?",
+  //   a: "- This Masterclass was originally recorded during a live session and is now available as a limited-time broadcast.- You’ll experience the full energy of the original session — just like those who attended it live.",
+  // },
 ];
 
 const FAQSection = () => {
