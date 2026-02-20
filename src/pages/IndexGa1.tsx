@@ -1,11 +1,11 @@
-import HeroSection from "@/components/HeroSection";
-import ProblemSection from "@/components/ProblemSection";
-import FGASection from "@/components/FGASection";
-import DiscoveriesSection from "@/components/DiscoveriesSection";
-import TestimonialsSection from "@/components/TestimonialsSection";
-import OfferSection from "@/components/OfferSection";
-import FAQSection from "@/components/FAQSection";
-import ClosingSection from "@/components/ClosingSection";
+import HeroSection from "@/components/ga1/HeroSection";
+import ProblemSection from "@/components/ga1/ProblemSection";
+import FGASection from "@/components/ga1/FGASection";
+import DiscoveriesSection from "@/components/ga1/DiscoveriesSection";
+import TestimonialsSection from "@/components/ga1/TestimonialsSection";
+import OfferSection from "@/components/ga1/OfferSection";
+import FAQSection from "@/components/ga1/FAQSection";
+import ClosingSection from "@/components/ga1/ClosingSection";
 import { useFacebookPixel } from "@/hooks/useFacebookPixel";
 
 const IndexGa1 = () => {

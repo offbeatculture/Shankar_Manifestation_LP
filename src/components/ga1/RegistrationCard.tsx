@@ -8,6 +8,7 @@ import {
   Lock,
   ChevronDown,
 } from "lucide-react";
+import { log } from "console";
 
 type Profession =
   | "Student"
@@ -42,8 +43,8 @@ type RegistrationCardProps = {
 
 /** ✅ Use the new URLs (from your top snippet) */
 const RAZORPAY_PAGE_URL =
-  "https://pages.razorpay.com/am-fb1";
-const WEBHOOK_URL = "https://offbeatn8n.coachswastik.com/webhook/leads-abundance";
+  "https://pages.razorpay.com/am-ga1";
+const WEBHOOK_URL = "https://offbeatn8n.coachswastik.com/webhook/leads-abundance-ga";
 
 /** ✅ UTMs: match the “above logic” */
 type UtmState = {
@@ -241,7 +242,7 @@ export default function RegistrationCard({
       try {
         await postToWebhook(form, utms);
       } catch {
-        // silent fail
+        console.log("tested")
       }
 
       // 2) Redirect to Razorpay page with query params + UTMs
