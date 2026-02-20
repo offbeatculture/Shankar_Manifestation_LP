@@ -10,7 +10,7 @@ import { useFacebookPixel } from "@/hooks/useFacebookPixel";
 
 const IndexGa1 = () => {
 
-useFacebookPixel();
+
    return (
   <main className="min-h-screen bg-background">
     <HeroSection />

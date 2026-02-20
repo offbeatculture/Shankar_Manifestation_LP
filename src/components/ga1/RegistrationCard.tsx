@@ -242,7 +242,7 @@ export default function RegistrationCard({
       try {
         await postToWebhook(form, utms);
       } catch {
-        console.log("tested")
+        console.log()
       }
 
       // 2) Redirect to Razorpay page with query params + UTMs

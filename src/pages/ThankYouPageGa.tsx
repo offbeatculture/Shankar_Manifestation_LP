@@ -2,7 +2,7 @@ import { useFacebookPixel } from "@/hooks/useFacebookPixel";
 import { CheckCircle, ArrowRight } from "lucide-react";
 
 const ThankYouPageGa = () => {
-    useFacebookPixel();
+
   return (
     <section className="min-h-screen flex items-center justify-center px-6 bg-[#E8D8C3]">
       <div className="max-w-2xl w-full bg-[#F4EBDD] rounded-2xl p-10 text-center shadow-lg">
