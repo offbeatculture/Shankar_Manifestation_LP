@@ -30,7 +30,7 @@ const ClosingSection = () => (
         <CTAButton className="px-10 shadow-[0_15px_40px_rgba(0,0,0,0.35)]">
           <span className="flex items-center gap-2">
             <Sparkles className="w-5 h-5" />
-            Get The Masterclass for ₹99
+            Register Now For Just ₹99
           </span>
         </CTAButton>
       </div>
