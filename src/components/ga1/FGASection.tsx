@@ -20,17 +20,17 @@ const steps = [
 ];
 
 const FGASection = () => (
-  <section className="w-full pt-8 pb-16 px-6 bg-[#e8d8c3] text-white">
+  <section className="w-full pt-8 pb-16 px-6 bg-[#2f3e4e] text-white">
     <div className="max-w-6xl mx-auto">
       {/* Heading */}
-      <div className="text-center mb-12">
+      <div className="text-center ">
         <p className="text-xs tracking-[0.4em] uppercase font-semibold text-[#2f3e4e]">
           The Formula
         </p>
 
-        <h2 className="font-display font-bold text-3xl md:text-5xl leading-tight mt-4 text-[#8a6a4a]">
+        <h2 className="font-display font-bold text-3xl md:text-5xl leading-tight  text-[#e8d8c3]">
           The{" "}
-          <span className="text-[#2f3e4e]">
+          <span className="text-[#fff]">
             F.G.A.
           </span>{" "}
           Framework

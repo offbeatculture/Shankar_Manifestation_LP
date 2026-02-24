@@ -29,15 +29,15 @@ const testimonials = [
 ];
 
 const TestimonialsSection = () => (
-  <section className="w-full bg-[#f4ebdd] pt-8 pb-16 px-6">
+  <section className="w-full bg-[#2f3e4e] pt-8 pb-16 px-6">
     <div className="max-w-6xl mx-auto text-center">
-      <p className="text-xs tracking-[0.35em] uppercase font-semibold text-[#2f3e4e]">
+      <p className="text-xs tracking-[0.35em] uppercase font-semibold text-[#e8d8c3]">
         Testimonials
       </p>
 
-      <h2 className="font-display font-bold text-3xl md:text-5xl mt-4 text-[#2f3e4e]">
+      <h2 className="font-display font-bold text-3xl md:text-5xl mt-4 text-[#e8d8c3]">
         Real Results from{" "}
-        <span className="text-[#8a6a4a]">Real People</span>
+        <span className="text-[#fff]">Real People</span>
       </h2>
 
       {/* Horizontal Scroll */}
